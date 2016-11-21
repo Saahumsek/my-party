@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :places
+  has_many :bookings
 
   #validates :name
   validates :age, numericality: { only_integer: true }

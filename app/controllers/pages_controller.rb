@@ -3,5 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @places = Place.all
+    @user = current_user
   end
 end

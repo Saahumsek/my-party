@@ -1,0 +1,22 @@
+<%= simple_form_for @places do |f| %>
+  <%= f.input :address.city, placeholder: "Où" %>
+  <span class="input-group-addon">du</span>
+  <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}, placeholder: "du" %>
+  <span class="input-group-addon">au</span>
+  <%= f.input :end_date, as: :string, input_html: {class: "datepicker"}, placeholder: "au" %>
+  <%= f.input :capacity %>
+  <%= f.submit input_html: {btn btn-primary} %>
+<% end %>
+
+
+
+
+
+
+<!-- <input type="text" class="form-control">
+
+$('#sandbox-container input').datepicker({
+    format: "dd/mm/yyyy",
+    weekStart: 1,
+    language: "fr"
+}); -->

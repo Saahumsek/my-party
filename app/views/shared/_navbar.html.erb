@@ -26,9 +26,9 @@
         </div>
       <% end %>
 
-      <%= link_to "Devenez hôte", new_place_path %>
+      <%= link_to "Become Host", new_place_path %>
 
-      <%= link_to "Vos soirées", places_path %>
+      <%= link_to "Your places", places_path %>
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
@@ -41,7 +41,8 @@
               <% end %>
             </li>
             <li>
-              <%= link_to user_path(@user) do %>
+
+              <%= link_to "Profile", user_path(@user) do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>

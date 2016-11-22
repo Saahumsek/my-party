@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: [:edit, :show, :update]
+
+    get "/bookings" => "bookings#my_bookings"
 end

@@ -3,6 +3,29 @@
     <div class="col-sm-4 col-sm-offset-4">
 
       <h2>Sign up</h2>
+      
+      <fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '178242542639239',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
@@ -17,6 +40,7 @@
           <%= f.button :submit, "Sign up" %>
         </div>
       <% end %>
+
 
       <%= render "devise/shared/links" %>
 

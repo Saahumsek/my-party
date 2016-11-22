@@ -7,19 +7,36 @@
 $font-family-sans-serif:  $base-font;
 $body-bg:                 white;
 $font-size-base:          $base-size;
+$font-size-large:         ceil(($font-size-base * 1.25));
+$font-size-h1:            floor(($font-size-base * 2.6));
+$font-size-h2:            floor(($font-size-base * 2.15));
+$font-size-h3:            ceil(($font-size-base * 1.7));
 $line-height-base:        $base-height;
 $headings-font-family:    $header-font;
 
 // Semantic color scheme
 // => http://getbootstrap.com/customize/#colors
 $gray-base:       $gray;
-$brand-primary:   $blue;
+$gray-light:      lighten($gray-base, 46.7%);
+$gray-dark:       lighten($gray-base, 20%);
+$brand-primary:   $orange;
 $brand-success:   $green;
 $brand-info:      $yellow;
 $brand-danger:    $red;
 $brand-warning:   $orange;
 
-// Buttons / inputs radius
-$border-radius-base:  2px;
-$border-radius-large: 2px;
-$border-radius-small: 2px;
+// Button bold
+$btn-bold-color: white;
+$btn-bold-background: $orange;
+$btn-bold-padding: 10px 15px;
+$btn-bold-border-radius: 4px;
+$btn-bold-font-weight: bold;
+$btn-bold-transition: background 0.3s ease;
+
+// Button
+$btn-color: #999999;
+$btn-border: 1px solid #999999;
+$btn-padding: 10px 15px;
+$btn-border-radius: 50px;
+$btn-font-weight: lighter;
+$btn-opacity: 0.6;

@@ -1,5 +1,12 @@
-<h1>Index place</h1>
+<h1>Mes soirées</h1>
 
 <% @places.each do |place| %>
-  <%= place.name %> | <%= place.address %> | <%= place.price %> | <%= place.capacity %>
+  <%= place.name %> | <%= place.address %> | <%= place.price %> | <%= place.capacity %> <br>
+<% end %>
+
+
+<% current_user.bookings.each do |booking| %>
+
+
+
 <% end %>

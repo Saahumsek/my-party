@@ -18,6 +18,11 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'rails-assets-bootstrap-datepicker', source: 'https://rails-assets.org'
+gem 'cloudinary', '1.1.0'
+
+gem "attachinary", github: "assembler/attachinary"
+gem "jquery-fileupload-rails"
+gem "coffee-rails"
 
 source "https://rails-assets.org" do
   gem 'rails-assets-bootstrap-datepicker'

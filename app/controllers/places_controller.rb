@@ -1,9 +1,12 @@
 class PlacesController < ApplicationController
 
   before_action :set_place, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @places = Place.all
+    place_ids = []
+    current_user.bookings.each { |booking| place_ids << booking.place_id }
+    @places = Place.where(id: place_ids)
   end
 
   def new
@@ -45,6 +48,6 @@ class PlacesController < ApplicationController
   end
 
   def place_params
-    params.require(:place).permit(:name, :address, :capacity, :price)
+    params.require(:place).permit(:name, :address, :capacity, :price, photos: [])
   end
 end

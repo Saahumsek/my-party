@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :places
   has_many :bookings
+  has_many :places
 
   #validates :name
 

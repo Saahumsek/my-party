@@ -5,12 +5,13 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    #place_ids = []
-    #current_user.bookings.each { |booking| place_ids << booking.place_id }
-    #@places = Place.where(id: place_ids)
-    @places = Place.all
-    @my_bookings = User.joins(bookings: :place).where(users: {id: current_user.id}).select("users.email, bookings.start_date, bookings.end_date, places.name, places.address, places.capacity, places.price")
-    #User.joins(bookings: :place).where(users: {id: denis.id}).select("users.email, bookings.start_date, bookings.end_date, places.name, places.address, places.capacity, places.price")
+    raise
+    #@places = Place.all
+    city = params[:city]
+    start_date = params[:start_date]
+    end_date = params[:end_date]
+    @places = Place.joins(:bookings).where(places: {city: params[:city]}) #.where.not("start_date")
+    raise
   end
 
   def new

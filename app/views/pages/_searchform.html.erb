@@ -1,7 +1,15 @@
 <form class="form-inline form">
-    <input type="text" class="form-control form-group" placeholder="Where?">
-    <input type="string" class="form-control datepicker form-group" class="form-group" placeholder="Start date">
-    <input type="string" class="form-control form-group" placeholder="End date">
-    <input type="text" class="form-control form-group" placeholder="#">
+    <input type="text" class="form-control form-group" placeholder="City?">
+    <input type="string" class="form-control datepicker form-group" placeholder="Start date">
+    <input type="string" class="form-control datepicker form-group" placeholder="End date">
+    <input type="text" class="form-control form-group" placeholder="Number of guests">
   <button type="submit" class="btn btn-primary btn">Search</button>
 </form>
+
+
+<%= simple_form_for places_path, method: "get" do |f| %>
+  <%= f.input :city %>
+  <%= f.input :start_date, class: "form-control datepicker form-group", placeholder: "Start date" %>
+  <%= f.input :end_date, class: "form-control datepicker form-group", placeholder: "End date" %>
+  <%= f.button :submit %>
+<% end %>

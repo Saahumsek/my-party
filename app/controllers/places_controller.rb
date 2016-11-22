@@ -21,7 +21,8 @@ class PlacesController < ApplicationController
   end
 
   def show
-
+    @booking = Booking.new
+    @bookings = Booking.where(place_id: @place.id)
   end
 
   def edit

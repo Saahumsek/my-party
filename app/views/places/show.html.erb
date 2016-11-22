@@ -1,6 +1,32 @@
 <%= link_to "edit place", edit_place_path(@place) %>
 
 
+<% if current_user.id == @place.user_id %>
+  <%= link_to "edit place", edit_place_path(@place) %>
+<% end %>
+
+
+<%= simple_form_for [@place, @booking] do |f| %>
+
+  <div id="sandbox-container"><input type="text" class="form-control" name="start_date" placeholder="start date"></div>
+  <div id="sandbox-container"><input type="text" class="form-control" name="end_date" placeholder="end date"></div>
+  <%= f.input :start_date, class: "datepicker" %>
+  <%= hidden_field_tag 'place_id', @place.id %>
+  <%= hidden_field_tag 'user_id', current_user.id %>
+
+  <%= f.button :submit %>
+
+<% end %>
+
+<% if current_user.id == @place.user_id %>
+  <h2>List of bookings</h2>
+
+  <% @bookings.each do |booking| %>
+    <%= booking.id %> | <%= booking.user_id %> |<%= booking.start_date %> | <%= booking.start_date %> | <%= User.find(booking.user_id).email %><br>
+  <% end %>
+<% end %>
+
+
 <div class="wrapper" id="genral_wrapper">
   <div class="container">
   <div class="row">
@@ -45,3 +71,4 @@
     "MAP"
   </div>
 </div>
+

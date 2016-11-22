@@ -26,20 +26,15 @@
         </div>
       <% end %>
 
-      <%= link_to "Devenez hôte", new_place_path %>
+      <%= link_to "Become Host", new_place_path %>
 
-      <%= link_to "Vos soirées", places_path %>
+      <%= link_to "Your places", places_path %>
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to "Add a new place", new_place_path do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Add a new place") %>
-              <% end %>
-            </li>
             <li>
               <%= link_to "Profile", user_path(@user) do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>

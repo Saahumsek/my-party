@@ -1,22 +1,26 @@
 <div class="card-warpper padded">
   <div class="container">
     <div class="row">
+    <% @places.each do |place| %>
       <div class="col-xs-12 col-sm-4">
-        <% @places.each do |place| %>
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-            <div class="card-category">Popular</div>
-            <div class="card-description">
-              <h2><%= place.name %></h2>
-              <span><%= place.price %> €</span>
+          <%= link_to places_path(place) do %>
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+              <img class="card-user avatar" src="user.jpg">
+
+              <!-- <div class="card-category">Popular</div> -->
+               <div class="card-numbers">
+                <h3><%= place.price %> €</h3>
+                <h2><%= place.capacity %> <i class="fa fa-users" aria-hidden="true"></i></h2>
+               </div>
+              <div class="card-description">
+                  <h2><%= place.name %></h2>
+                  <p><%= place.address %></p>
+            <% end %>
             </div>
-            <img class="card-user avatar" src="user.jpg">
-            <a class="card-link" href="#" ></a>
-          </div>
-        <% end %>
       </div>
-
-
+    <% end %>
     </div>
   </div>
 </div>
+
 

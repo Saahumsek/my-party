@@ -9,6 +9,8 @@ class PlacesController < ApplicationController
     #current_user.bookings.each { |booking| place_ids << booking.place_id }
     #@places = Place.where(id: place_ids)
     @places = Place.all
+    @my_bookings = User.joins(bookings: :place).where(users: {id: current_user.id}).select("users.email, bookings.start_date, bookings.end_date, places.name, places.address, places.capacity, places.price")
+    #User.joins(bookings: :place).where(users: {id: denis.id}).select("users.email, bookings.start_date, bookings.end_date, places.name, places.address, places.capacity, places.price")
   end
 
   def new

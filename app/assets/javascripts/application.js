@@ -4,6 +4,7 @@
 //= require bootstrap-datepicker
 //= require_tree .
 
+
 $('#sandbox-container input').datepicker({
     format: "dd/mm/yyyy",
     weekStart: 1,

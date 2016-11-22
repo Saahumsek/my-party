@@ -1,3 +1,4 @@
+
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
@@ -5,3 +6,6 @@
 <% @places.each do |place|  %>
   <%= place.name %> | <%= place.address %> | <%= place.price %> | <%= place.capacity %> <br>
 <% end %>
+
+<%= render 'banner' %>
+<%= render 'card_grid' %>

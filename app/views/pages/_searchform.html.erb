@@ -7,7 +7,7 @@
 </form>
 
 
-<%= simple_form_for places_path, method: "get" do |f| %>
+<%= simple_form_for :search, url: places_path, method: "get" do |f| %>
   <%= f.input :city %>
   <%= f.input :start_date, class: "form-control datepicker form-group", placeholder: "Start date" %>
   <%= f.input :end_date, class: "form-control datepicker form-group", placeholder: "End date" %>

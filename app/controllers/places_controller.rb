@@ -5,13 +5,11 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    raise
     #@places = Place.all
-    city = params[:city]
-    start_date = params[:start_date]
-    end_date = params[:end_date]
-    @places = Place.joins(:bookings).where(places: {city: params[:city]}) #.where.not("start_date")
-    raise
+    city = params["search"]["city"]
+    start_date = params["search"]["start_date"]
+    end_date = params["search"]["end_date"]
+    @places = Place.joins(:bookings).where(places: {city: city}) #.where.not("start_date")
   end
 
   def new

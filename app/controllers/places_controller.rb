@@ -4,9 +4,10 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    place_ids = []
-    current_user.bookings.each { |booking| place_ids << booking.place_id }
-    @places = Place.where(id: place_ids)
+    #place_ids = []
+    #current_user.bookings.each { |booking| place_ids << booking.place_id }
+    #@places = Place.where(id: place_ids)
+    @places = Place.all
   end
 
   def new

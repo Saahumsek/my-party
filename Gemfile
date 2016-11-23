@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'redis'
 gem 'omniauth-facebook'
 gem "geocoder"
+gem 'country_select'
 gem "coffee-rails"
 gem "gmaps4rails"
 source 'https://rails-assets.org' do

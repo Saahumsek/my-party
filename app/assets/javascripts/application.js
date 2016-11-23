@@ -8,10 +8,3 @@
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
 //= require_tree .
-
-
-$('#sandbox-container input').datepicker({
-    format: "dd/mm/yyyy",
-    weekStart: 1,
-    daysOfWeekHighlighted: "0,6"
-});

@@ -5,14 +5,17 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    #@places = Place.all
     city = params["search"]["city"]
     start_date = params["search"]["start_date"]
     end_date = params["search"]["end_date"]
     if city.empty?
-      @places = Place.all
+      @places = Place.where.not(latitude: nil, longitude: nil)
     else
-      @places = Place.joins(:bookings).where(places: {city: city}) #.where.not("start_date")
+      @places = Place.where(city: city).where.not(latitude: nil, longitude: nil) #.where.not("start_date")
+    end
+    @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
     end
   end
 
@@ -35,6 +38,7 @@ class PlacesController < ApplicationController
     @bookings = Booking.where(place_id: @place.id)
     @place = Place.find(params[:id])
     @alert_message = "You are viewing #{@place.name}"
+    @place_coordinates = { lat: @place.latitude, lng: @place.longitude }
   end
 
   def edit

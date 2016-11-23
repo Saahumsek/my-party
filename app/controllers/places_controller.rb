@@ -24,6 +24,8 @@ class PlacesController < ApplicationController
   def show
     @booking = Booking.new
     @bookings = Booking.where(place_id: @place.id)
+    @place = Place.find(params[:id])
+    @alert_message = "You are viewing #{@place.name}"
   end
 
   def edit

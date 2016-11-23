@@ -11,7 +11,7 @@ class PlacesController < ApplicationController
     if city.empty?
       @places = Place.where.not(latitude: nil, longitude: nil)
     else
-      @places = Place.where(city: city).where.not(latitude: nil, longitude: nil) #.where.not("start_date")
+      @places = Place.where(city: city).where.not(latitude: nil, longitude: nil)
     end
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude

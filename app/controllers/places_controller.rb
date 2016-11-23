@@ -9,7 +9,11 @@ class PlacesController < ApplicationController
     city = params["search"]["city"]
     start_date = params["search"]["start_date"]
     end_date = params["search"]["end_date"]
-    @places = Place.joins(:bookings).where(places: {city: city}) #.where.not("start_date")
+    if city.empty?
+      @places = Place.all
+    else
+      @places = Place.joins(:bookings).where(places: {city: city}) #.where.not("start_date")
+    end
   end
 
   def new

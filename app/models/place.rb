@@ -1,7 +1,7 @@
 class Place < ApplicationRecord
-  #geocoded_by :address
+  geocoded_by :address
   belongs_to :user
-  #after_validation :geocode, if: :address_changed?
+  after_validation :geocode, if: :address_changed?
   has_many :bookings, dependent: :destroy
   has_attachments :photos, maximum: 5
   validates :name, presence: true

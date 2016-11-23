@@ -5,14 +5,17 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    #place_ids = []
-    #current_user.bookings.each { |booking| place_ids << booking.place_id }
-    #@places = Place.where(id: place_ids)
-    @places = Place.where.not(latitude: nil, longitude: nil)
+    city = params["search"]["city"]
+    start_date = params["search"]["start_date"]
+    end_date = params["search"]["end_date"]
+    if city.empty?
+      @places = Place.where.not(latitude: nil, longitude: nil)
+    else
+      @places = Place.where(city: city).where.not(latitude: nil, longitude: nil) #.where.not("start_date")
+    end
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
       marker.lng place.longitude
-      # karr comment : marker.infowindow render_to_string(partial: "/places/map_box", locals: { place: place })
     end
   end
 

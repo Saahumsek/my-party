@@ -20,10 +20,12 @@
 <% end %>
 
 <% if current_user.id == @place.user_id %>
-  <h2>List of bookings</h2>
+  <% unless @bookings.empty? %>
+    <h2>List of bookings</h2>
 
-  <% @bookings.each do |booking| %>
-    <%= booking.id %> | <%= booking.user_id %> |<%= booking.start_date %> | <%= booking.start_date %> | <%= User.find(booking.user_id).email %><br>
+    <% @bookings.each do |booking| %>
+      <%= booking.id %> | <%= booking.user_id %> |<%= booking.start_date %> | <%= booking.start_date %> | <%= User.find(booking.user_id).email %><br>
+    <% end %>
   <% end %>
 <% end %>
 

@@ -43,6 +43,10 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
     @alert_message = "You are viewing #{@place.name}"
     @place_coordinates = { lat: @place.latitude, lng: @place.longitude }
+    @hash = Gmaps4rails.build_markers(@place) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
+    end
   end
 
   def edit
@@ -51,6 +55,10 @@ class PlacesController < ApplicationController
 
   def update
     @place.update(place_params)
+    @hash = Gmaps4rails.build_markers(@place) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
+    end
     redirect_to place_path(@place)
   end
 

@@ -36,16 +36,3 @@
     </div>
   </div>
 </div>
-
-<h1>Mes soirées</h1>
-
-
-
-
-<% current_user.bookings.each do |booking| %>
-  <% @places.each do |place| %>
-    <% if booking.place_id == place.id %>
-      <%= place.name %> | <%= place.address %> | <%= place.price %> | <%= place.capacity %> | From <%= booking.start_date %> To <%= booking.end_date %><br>
-    <% end %>
-  <% end %>
-<% end %>

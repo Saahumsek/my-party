@@ -5,10 +5,15 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    #place_ids = []
-    #current_user.bookings.each { |booking| place_ids << booking.place_id }
-    #@places = Place.where(id: place_ids)
-    @places = Place.all
+    #@places = Place.all
+    city = params["search"]["city"]
+    start_date = params["search"]["start_date"]
+    end_date = params["search"]["end_date"]
+    if city.empty?
+      @places = Place.all
+    else
+      @places = Place.joins(:bookings).where(places: {city: city}) #.where.not("start_date")
+    end
   end
 
   def new
@@ -28,6 +33,8 @@ class PlacesController < ApplicationController
   def show
     @booking = Booking.new
     @bookings = Booking.where(place_id: @place.id)
+    @place = Place.find(params[:id])
+    @alert_message = "You are viewing #{@place.name}"
   end
 
   def edit

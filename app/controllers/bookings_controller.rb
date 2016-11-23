@@ -16,6 +16,10 @@ class BookingsController < ApplicationController
     redirect_to place_path(Place.find(params[:place_id]))
   end
 
+  def my_bookings
+    @my_bookings = User.joins(bookings: :place).where(users: {id: current_user.id}).select("users.email, bookings.start_date, bookings.end_date, places.name, places.address, places.capacity, places.price")
+  end
+
   private
 
   def booking_params

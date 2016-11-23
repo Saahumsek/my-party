@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 20161122211446) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text     "content"
-    t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "city"
     t.index ["user_id"], name: "index_places_on_user_id", using: :btree
   end
 

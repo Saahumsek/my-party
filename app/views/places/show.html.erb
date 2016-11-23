@@ -1,5 +1,7 @@
-<% if current_user.id == @place.user_id %>
-  <%= link_to "edit place", edit_place_path(@place) %>
+<% if signed_in? %>
+  <% if current_user.id == @place.user_id %>
+    <%= link_to "edit place", edit_place_path(@place) %>
+  <% end %>
 <% end %>
 
 

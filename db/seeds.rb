@@ -12,16 +12,9 @@ User.destroy_all
 sevan = User.create!(email: "sevan.marian1@gmail.com", password: "matthieu")
 matthieu = User.create!(email: "matthieu@gmail.com", password: "sevanee")
 
-p "Users created"
-
-place1 = Place.create!(user_id: sevan.id, capacity: 970, name: "starlight", address:"12 rue du faubourg saint antoine", city: "Paris", price: 1500, content: "la meilleur boite disco de paris")
-place2 = Place.create!(user_id: matthieu.id, capacity: 380, name: "l'échangiste", address:"69 rue Pigalle", city: "Paris", price: 2000, content: "le meiller endroit pour vos soirées coqines")
-p "Places created"
-
-booking1 = Booking.create!(start_date: "15/11/2016", end_date: "30/11/2016", user_id: sevan.id, place_id: place1.id)
-booking2 = Booking.create!(start_date: "15/11/2016", end_date: "30/11/2016", user_id: sevan.id, place_id: place2.id)
-booking3 = Booking.create!(start_date: "15/11/2016", end_date: "30/11/2016", user_id: matthieu.id, place_id: place1.id)
-booking4 = Booking.create!(start_date: "15/11/2016", end_date: "30/11/2016", user_id: matthieu.id, place_id: place2.id)
-p "Bookigs created"
+p "2 users created"
+place1 = Place.create!(user_id: sevan.id, capacity: 970, name: "starlight", address:"12 rue du faubourg saint antoine", zip_code: 75012, city:"paris", country: "FR", price: 1500, content: "la meilleur boite disco de paris")
+place2 = Place.create!(user_id: matthieu.id, capacity: 380, name: "l'échangiste", address:"69 rue Pigalle", zip_code: 75009, city:"paris", country: "FR", price: 2000, content: "le meiller endroit pour vos soirées coqines")
+p "2 places created"
 
 p "seed done"

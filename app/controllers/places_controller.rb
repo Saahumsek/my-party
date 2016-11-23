@@ -8,7 +8,12 @@ class PlacesController < ApplicationController
     #place_ids = []
     #current_user.bookings.each { |booking| place_ids << booking.place_id }
     #@places = Place.where(id: place_ids)
-    @places = Place.all
+    @places = Place.where.not(latitude: nil, longitude: nil)
+    @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
+      # karr comment : marker.infowindow render_to_string(partial: "/places/map_box", locals: { place: place })
+    end
   end
 
   def new
@@ -30,6 +35,7 @@ class PlacesController < ApplicationController
     @bookings = Booking.where(place_id: @place.id)
     @place = Place.find(params[:id])
     @alert_message = "You are viewing #{@place.name}"
+    @place_coordinates = { lat: @place.latitude, lng: @place.longitude }
   end
 
   def edit

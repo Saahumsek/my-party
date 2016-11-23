@@ -1,12 +1,11 @@
-<div class="card-warpper padded">
+<div class="card-wrapper padded">
   <div class="container">
     <div class="row">
     <% @places.each do |place| %>
       <div class="col-xs-12 col-sm-4">
           <%= link_to place_path(place) do %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-              <img class="card-user avatar" src="user.jpg">
-
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= place.photos.any? ? (cl_image_path place.photos.first.path) : image_path('banner.jpg') %>')">
+              <img src="avatar.png" alt="user" class="avatar">
               <!-- <div class="card-category">Popular</div> -->
                <div class="card-numbers">
                 <h3><%= place.price %> €</h3>

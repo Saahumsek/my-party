@@ -11,6 +11,7 @@ User.destroy_all
 
 sevan = User.create!(email: "sevan.marian1@gmail.com", password: "matthieu")
 matthieu = User.create!(email: "matthieu@gmail.com", password: "sevanee")
+
 p "Users created"
 
 place1 = Place.create!(user_id: sevan.id, capacity: 970, name: "starlight", address:"12 rue du faubourg saint antoine", city: "Paris", price: 1500, content: "la meilleur boite disco de paris")

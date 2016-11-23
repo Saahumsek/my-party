@@ -12,7 +12,8 @@ class PlacesController < ApplicationController
     if city.empty?
       @places = Place.all
     else
-      @places = Place.joins(:bookings).where(places: {city: city}) #.where.not("start_date")
+      @places = Place.where(city: city)
+      #@places = Place.joins(:bookings).where(places: {city: city}).select("bookings.start_date, bookings.end_date").as_json
     end
   end
 
@@ -57,6 +58,6 @@ class PlacesController < ApplicationController
   end
 
   def place_params
-    params.require(:place).permit(:name, :address, :capacity, :price, photos: [])
+    params.require(:place).permit(:name, :address, :city, :capacity, :price, photos: [])
   end
 end

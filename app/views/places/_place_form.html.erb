@@ -5,9 +5,9 @@
         <%= simple_form_for @place do |f| %>
           <%= f.input :name %>
           <%= f.input :address %>
-          <%= f.input :zip_code %>
-          <%= f.input :city %>
-          <%= f.input :country, priority: [ 'FR' ] %>
+          <%#= f.input :zip_code %>
+          <%#= f.input :city %>
+          <%#= f.input :country, priority: [ 'FR' ] %>
           <%= f.input :capacity %>
           <%= f.input :price %>
           <%= f.input :photos, as: :attachinary %>

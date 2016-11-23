@@ -1,5 +1,51 @@
-<h1>Index place</h1>
+<div class="wrapper">
+  <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      Recherche
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <div class="col-xs-12 col-sm-4">
+          MAP
+        </div>
+        <div class="col-xs-12 col-sm-8">
+          <% @places.each do |place| %>
+            <div class="col-xs-12 col-sm-6">
+                <%= link_to places_path(place) do %>
+                  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+                    <img class="card-user avatar" src="user.jpg">
 
-<% @places.each do |place| %>
-  <%= place.name %> | <%= place.address %> | <%= place.price %> | <%= place.capacity %>
+                    <!-- <div class="card-category">Popular</div> -->
+                     <div class="card-numbers">
+                      <h3><%= place.price %> €</h3>
+                      <h2><%= place.capacity %> <i class="fa fa-users" aria-hidden="true"></i></h2>
+                     </div>
+                    <div class="card-description">
+                        <h2><%= place.name %></h2>
+                        <p><%= place.address %></p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<h1>Mes soirées</h1>
+
+
+
+
+<% current_user.bookings.each do |booking| %>
+  <% @places.each do |place| %>
+    <% if booking.place_id == place.id %>
+      <%= place.name %> | <%= place.address %> | <%= place.price %> | <%= place.capacity %> | From <%= booking.start_date %> To <%= booking.end_date %><br>
+    <% end %>
+  <% end %>
 <% end %>

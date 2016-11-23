@@ -9,9 +9,7 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new
-    @booking.start_date = params[:start_date]
-    @booking.end_date = params[:end_date]
+    @booking = Booking.new(booking_params)
     @booking.user_id = params[:user_id]
     @booking.place_id = params[:place_id]
     @booking.save

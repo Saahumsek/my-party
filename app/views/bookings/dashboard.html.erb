@@ -1,0 +1,40 @@
+<h1><%= @user.email %></h1>
+
+<h2>My booking requests</h2>
+
+<% @mybookings.each do |booking| %>
+
+  <%= booking.status %> | <%= booking.start_date %> | <%= booking.end_date %> | <%= booking.name %> | <%= booking.address %> | <%= booking.capacity %> | <%= booking.price %> <br>
+
+<% end %>
+
+
+<h2>Incoming booking requests</h2>
+
+<% @bookings.each do |booking| %>
+  <table>
+    <tr>
+      <span>Request from : <%= link_to booking.user.email , user_path(booking.user)%></span><br>
+      <%= booking.status %> | <%= booking.place.name %> | From : <%= booking.start_date %> To <%= booking.end_date %>
+
+      <% if booking.status == "pending" %>
+        <%= link_to "Accept the booking", accept_booking_path(booking), class: "btn btn-primary"  %>
+        <%= link_to "Decline the booking", reject_booking_path(booking), class: "btn btn-danger"  %>
+      <% end %>
+
+      <% if booking.status == "accepted" %>
+        <%= link_to "Cancel the booking", reject_booking_path(booking), class: "btn btn-danger"  %>
+      <% end %>
+
+      <% if booking.status == "rejected" %>
+        <%= link_to "Accept the booking", accept_booking_path(booking), class: "btn btn-primary"  %>
+      <% end %>
+    </tr><br><br>
+  </table>
+
+<% end %>
+
+<h2>My places</h2>
+
+<%= render 'pages/card_grid' %>
+

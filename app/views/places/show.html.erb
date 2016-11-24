@@ -1,109 +1,66 @@
-<div class="wrapper padded">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <p><%= @place.name %>'s photos</p>
-        <% @place.photos.each do |photo| %>
-          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
 
+  <div class="wrapper-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @place.photos.any? ? (cl_image_path @place.photos.first.path) : image_path('no-picture.jpg') %>')">
+  </div>
 
 <% if signed_in? %>
   <% if current_user.id == @place.user_id %>
-    <%= link_to "edit place", edit_place_path(@place) %>
+    <%= link_to "edit place", edit_place_path(@place), class: "btn btn-default" %>
   <% end %>
 <% end %>
 
-<% if current_user.id == @place.user_id %>
-  <% unless @bookings.empty? %>
-    <h2>List of bookings</h2>
-
-    <% @bookings.each do |booking| %>
-      <%= booking.id %> | <%= booking.user_id %> |<%= booking.start_date %> | <%= booking.start_date %> | <%= User.find(booking.user_id).email %><br>
-    <% end %>
-  <% end %>
-<% end %>
-
-<div class="wrapper padded">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-8">
+    <div class="wrapper-info">
+      <div class="container">
         <div class="row">
-          <div class="col-sm-6">
-            <p><%= @place.name %></p>
-          </div>
-          <div class="col-sm-6 clearfix">
-            <h3>Owner's details</h3>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-8">
-        <ul>
-          <li class="span"> <i class="fa fa-home" aria-hidden="true"></i> <%= @place.address %></li>
-          <li class="span"> <i class="fa fa-pencil" aria-hidden="true"></i> <%= @place.content %></li>
-          <li class="span"> <i class="fa fa-users" aria-hidden="true"></i> <%= @place.capacity %> persons</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+          <div class="col-xs-12 col-sm-8">
+            <h2><%= @place.name %></h2>
+            <p><%= @place.address %></p>
 
+            <div class="place-info">
+            A propos de ce lieu
+              <%= @place.content %></br>
+              <i class="fa fa-users" aria-hidden="true"></i> <%= @place.capacity %> persons</br>
+              <i class="fa fa-eur" aria-hidden="true"></i><%= @place.price %> € par soirée
             </div>
+
+
+
           </div>
-          <div class="col-xs-12 col-sm-4">
-            <div class="contact-bar">
-              <div class="contact-container">
-                <div class="contact-header space-3">
-                  <p>Book your place now</p>
-                  <li class="span"> <i class="fa fa-euro" aria-hidden="true"></i> <li><%= @place.price %> € par soirée</li>
-                </div>
-                <div class="contact-body">
-                  <%= simple_form_for [@place, @booking] do |f| %>
 
-                    <%= f.input :start_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
-                    <%= f.input :end_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
-                    <%= hidden_field_tag 'place_id', @place.id %>
-                    <%= hidden_field_tag 'user_id', current_user.id %>
+          <% if signed_in? %>
+            <% unless current_user.id == @place.user_id %>
+              <div class="col-xs-12 col-sm-4">
+                <div class="contact-bar">
+                  <div class="contact-container">
+                    <div class="contact-header space-3">
+                      <p>Book Now</p>
+                    </div>
+                    <div class="contact-body">
+                      <%= simple_form_for [@place, @booking] do |f| %>
 
-                    <%= f.button :submit %>
+                        <%= f.input :start_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
+                        <%= f.input :end_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
+                        <%= hidden_field_tag 'place_id', @place.id %>
+                        <%= hidden_field_tag 'user_id', current_user.id %>
 
-                  <% end %>
+                        <%= f.button :submit %>
 
+                      <% end %>
+
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            <% end %>
+          <% end %>
+
+
         </div>
       </div>
     </div>
 
-
-
-      </div>
-          </div>
-  </div>
-</div>
-
 <div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-        <div id="map" style="width: 100%; height: 600px;"></div>
-      </div>
-    </div>
+  <div id="map" style="width: 100%; height: 600px;">
+    <%= render 'geomapping_js_tag' %>
   </div>
 </div>
-
-<%= render 'geomapping_js_tag' %>
 

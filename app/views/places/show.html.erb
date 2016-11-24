@@ -1,3 +1,17 @@
+<div class="wrapper padded">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p><%= @place.name %>'s photos</p>
+        <% @place.photos.each do |photo| %>
+          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <% if signed_in? %>
   <% if current_user.id == @place.user_id %>
     <%= link_to "edit place", edit_place_path(@place) %>
@@ -14,22 +28,45 @@
   <% end %>
 <% end %>
 
-    <div class="wrapper padded">
-      <div class="container">
+<div class="wrapper padded">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8">
         <div class="row">
-          <div class="col-xs-12 col-sm-8">
-            <h2 class="text-center">Your next trip</h2>
-            <div class="card">
-              <% @place.photos.each do |photo| %>
-                <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
-              <% end %>
+          <div class="col-sm-6">
+            <p><%= @place.name %></p>
+          </div>
+          <div class="col-sm-6 clearfix">
+            <h3>Owner's details</h3>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-8">
+        <ul>
+          <li class="span"> <i class="fa fa-home" aria-hidden="true"></i> <%= @place.address %></li>
+          <li class="span"> <i class="fa fa-pencil" aria-hidden="true"></i> <%= @place.content %></li>
+          <li class="span"> <i class="fa fa-users" aria-hidden="true"></i> <%= @place.capacity %> persons</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
             </div>
           </div>
           <div class="col-xs-12 col-sm-4">
             <div class="contact-bar">
               <div class="contact-container">
                 <div class="contact-header space-3">
-                  <p>Book Now</p>
+                  <p>Book your place now</p>
+                  <li class="span"> <i class="fa fa-euro" aria-hidden="true"></i> <li><%= @place.price %> € par soirée</li>
                 </div>
                 <div class="contact-body">
                   <%= simple_form_for [@place, @booking] do |f| %>
@@ -51,25 +88,7 @@
       </div>
     </div>
 
-<div class="wrapper" id="details_wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-8">
-          <h3><%= @place.name %></h3>
-        <ul>
-          <li><%= @place.address %></li>
-          <li><%= @place.content %></li>
-          <li class="span"> <i class="fa fa-users" aria-hidden="true"></i> <%= @place.capacity %> persons</li>
-          <li><%= @place.price %> € par soirée</li>
-        </ul>
-      </div>
-      <div class="col-xs-12 col-sm-8">
-        <ul>
-          <li>"Owner"</li>
-          <li>"Reservation"</li>
-        </ul>
-      </div>
-    </div>
+
 
       </div>
           </div>

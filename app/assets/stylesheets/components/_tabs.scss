@@ -1,0 +1,49 @@
+.wrapper {
+  background:$gray-base;
+  minimum-height: 150px;
+}
+.container{
+
+}
+.tabs {
+  background: $gray-base;
+  display: flex;
+  padding: 10px 10px 0 10px;
+  margin-top: 10px;
+}
+.tabs a {
+  color: $gray-base;
+  text-decoration: none;
+}
+.tabs a:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.tabs h3 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 0;
+}
+.tabs p {
+  opacity: 0.5;
+  margin-bottom: 0;
+}
+.tab {
+  background: white;
+  opacity: 0.6;
+  flex: 1 1 auto;
+  text-align: center;
+  padding: 20px 0;
+  border-right: 1px $gray-base;
+}
+.tab:first-child {
+  border-radius: 5px 0 0 0;
+
+}
+.tab:last-child {
+  border-radius: 0 5px 0 0;
+}
+.tab.active {
+  opacity: 1;
+  color: $brand-primary;
+}

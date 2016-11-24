@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20161123154501) do
     t.text     "content"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "city"
     t.index ["user_id"], name: "index_places_on_user_id", using: :btree
   end
 

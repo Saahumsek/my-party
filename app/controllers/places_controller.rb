@@ -5,10 +5,10 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    if params["city"]
-      city = params["city"]
-      start_date = params["start_date"]
-      end_date = params["end_date"]
+    if params["search"]["city"]
+      city = params["search"]["city"]
+      start_date = params["search"]["start_date"]
+      end_date = params["search"]["end_date"]
       if city.empty?
         @places = Place.where.not(latitude: nil, longitude: nil)
       else

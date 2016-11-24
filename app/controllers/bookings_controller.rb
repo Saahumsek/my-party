@@ -35,6 +35,7 @@ class BookingsController < ApplicationController
     @booking.user_id = params[:user_id]
     @booking.place_id = params[:place_id]
     @booking.save
+    flash[:notice] = "Booking request sent to place owner"
     redirect_to place_path(Place.find(params[:place_id]))
   end
 

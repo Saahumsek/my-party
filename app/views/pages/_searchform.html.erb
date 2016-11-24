@@ -1,17 +1,17 @@
 <%= simple_form_for :search, url: places_path, :html => { :method => "get", :class => "form form-inline" } do |f| %>
   <div class="form-group">
-    <%= f.input :city, :input_html => { :class => 'form-control input-lg' }, placeholder: "City", label: false %>
+    <%= f.input :city, :input_html => { :class => 'form-control' }, placeholder: "City", label: false %>
   </div>
   <div class="form-group">
-    <%= f.input :start_date, :input_html => { :class => 'form-control datepicker input-lg' }, placeholder: "Start date", label: false %>
+    <%= f.input :start_date, :input_html => { :class => 'form-control datepicker' }, placeholder: "Start date", label: false %>
   </div>
   <div class="form-group">
-    <%= f.input :end_date, :input_html => { :class => 'form-control datepicker input-lg' }, placeholder: "End date", label: false %>
+    <%= f.input :end_date, :input_html => { :class => 'form-control datepicker' }, placeholder: "End date", label: false %>
   </div>
   <div class="form-group">
-    <%= f.input :guests, :input_html => { :class => 'form-control input-lg' }, placeholder: "Guests", label: false %>
+    <%= f.input :guests, :input_html => { :class => 'form-control' }, placeholder: "Guests", label: false %>
   </div>
   <div class="form-group">
-    <%= f.button :submit, "Search", class: "btn btn-primary btn-lg" %>
+    <%= f.button :submit, "Search", class: "btn btn-primary" %>
   </div>
 <% end %>

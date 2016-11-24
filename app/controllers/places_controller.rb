@@ -5,14 +5,21 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    #@places = Place.all
-    city = params["search"]["city"]
-    start_date = params["search"]["start_date"]
-    end_date = params["search"]["end_date"]
-    if city.empty?
-      @places = Place.all
+    if params["city"]
+      city = params["city"]
+      start_date = params["start_date"]
+      end_date = params["end_date"]
+      if city.empty?
+        @places = Place.where.not(latitude: nil, longitude: nil)
+      else
+        @places = Place.near(city, 50)
+      end
     else
-      @places = Place.joins(:bookings).where(places: {city: city}) #.where.not("start_date")
+      @places = Place.all
+    end
+    @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
     end
   end
 
@@ -35,6 +42,11 @@ class PlacesController < ApplicationController
     @bookings = Booking.where(place_id: @place.id)
     @place = Place.find(params[:id])
     @alert_message = "You are viewing #{@place.name}"
+    @place_coordinates = { lat: @place.latitude, lng: @place.longitude }
+    @hash = Gmaps4rails.build_markers(@place) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
+    end
   end
 
   def edit
@@ -43,6 +55,10 @@ class PlacesController < ApplicationController
 
   def update
     @place.update(place_params)
+    @hash = Gmaps4rails.build_markers(@place) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
+    end
     redirect_to place_path(@place)
   end
 
@@ -57,6 +73,6 @@ class PlacesController < ApplicationController
   end
 
   def place_params
-    params.require(:place).permit(:name, :address, :capacity, :price, photos: [])
+    params.require(:place).permit(:name, :address, :zip_code, :city, :country, :capacity, :price, photos: [])
   end
 end

@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
   end
 
   def my_bookings
-    @my_bookings = User.joins(bookings: :place).where(users: {id: current_user.id}).select("users.email, bookings.start_date, bookings.end_date, places.name, places.address, places.capacity, places.price")
+    @my_bookings = User.joins(bookings: :place).where(users: {id: current_user.id}).select("users.email, bookings.start_date, bookings.end_date, places.name, places.address, places.city, places.capacity, places.price")
   end
 
   private

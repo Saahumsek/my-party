@@ -1,3 +1,19 @@
+<% if signed_in? %>
+  <% if current_user.id == @place.user_id %>
+    <%= link_to "edit place", edit_place_path(@place) %>
+  <% end %>
+<% end %>
+
+<% if current_user.id == @place.user_id %>
+  <% unless @bookings.empty? %>
+    <h2>List of bookings</h2>
+
+    <% @bookings.each do |booking| %>
+      <%= booking.id %> | <%= booking.user_id %> |<%= booking.start_date %> | <%= booking.start_date %> | <%= User.find(booking.user_id).email %><br>
+    <% end %>
+  <% end %>
+<% end %>
+
     <div class="wrapper padded">
       <div class="container">
         <div class="row">
@@ -22,8 +38,11 @@
                     <%= f.input :end_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
                     <%= hidden_field_tag 'place_id', @place.id %>
                     <%= hidden_field_tag 'user_id', current_user.id %>
-                    <%= f.button :submit, input_html: { class: "btn btn-primary"} %>
+
+                    <%= f.button :submit %>
+
                   <% end %>
+
                 </div>
               </div>
             </div>
@@ -32,8 +51,6 @@
       </div>
     </div>
 
-  </div>
-</div>
 <div class="wrapper" id="details_wrapper">
   <div class="container">
     <div class="row">
@@ -58,23 +75,16 @@
           </div>
   </div>
 </div>
-<!-- <div class="wrapper">
+
+<div class="wrapper">
   <div class="container">
-    "MAP"
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div id="map" style="width: 100%; height: 600px;"></div>
+      </div>
+    </div>
   </div>
-</div> -->
+</div>
 
-<%# if current_user.id == @place.user_id %>
-  <%#= link_to "edit place", edit_place_path(@place) %>
-<%# end %>
+<%= render 'geomapping_js_tag' %>
 
-
-<%# if current_user.id == @place.user_id %>
-  <%# unless @bookings.empty? %>
-    <!-- <h2>List of bookings</h2> -->
-
-    <%# @bookings.each do |booking| %>
-      <!-- <%#= booking.id %> | <%# booking.user_id %> |<%#= booking.start_date %> | <%#= booking.start_date %> | <%#= User.find(booking.user_id).email %><br> -->
-    <%# end %>
-  <%# end %>
-<%# end %>

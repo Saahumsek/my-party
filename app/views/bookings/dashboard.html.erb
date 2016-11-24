@@ -1,40 +1,73 @@
-<h1><%= @user.email %></h1>
+<div class="wrapper">
+  <div class="container text-center">
+    <div class="tabs">
+      <a class="tab active" href="#">
+        <h3>My places</h3>
+      </a>
+      <a class="tab" href="#">
+        <h3>My parties</h3>
+      </a>
+    </div>
+  </div>
+</div>
 
-<h2>My booking requests</h2>
+<h2>My parties</h2>
+<div class="wrapper myparties-content" >
+  <div class="container">
+    <% @mybookings.each do |booking| %>
+      <div class="row booking-row">
+        <div class="col-xs-12 col-sm-6">
+          <div class="container bookings-container">
+            <h3>You booked <%= booking.place.name %> from <%= booking.start_date %> to <%= booking.end_date %></h3>
+            <h3>Booking <%= booking.status %></h3>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 card-container">
+          <div class="card center-block" style=" max-width: 400px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= booking.place.photos.any? ? (cl_image_path booking.place.photos.first.path) : image_path('no-picture.jpg') %>')">
+            <%= image_tag 'avatar', class: 'avatar' %>
+            <div class="card-numbers">
+              <h3><%= booking.place.price %> €</h3>
+              <h2><%= booking.place.capacity %> <i class="fa fa-users" aria-hidden="true"></i></h2>
+            </div>
+            <div class="card-description">
+              <h2><%= booking.place.name %></h2>
+              <p><%= booking.place.address %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<% @mybookings.each do |booking| %>
-
-  <%= booking.status %> | <%= booking.start_date %> | <%= booking.end_date %> | <%= booking.name %> | <%= booking.address %> | <%= booking.capacity %> | <%= booking.price %> <br>
-
-<% end %>
-
-
-<h2>Incoming booking requests</h2>
-
-<% @bookings.each do |booking| %>
-  <table>
-    <tr>
-      <span>Request from : <%= link_to booking.user.email , user_path(booking.user)%></span><br>
-      <%= booking.status %> | <%= booking.place.name %> | From : <%= booking.start_date %> To <%= booking.end_date %>
-
-      <% if booking.status == "pending" %>
-        <%= link_to "Accept the booking", accept_booking_path(booking), class: "btn btn-primary"  %>
-        <%= link_to "Decline the booking", reject_booking_path(booking), class: "btn btn-danger"  %>
-      <% end %>
-
-      <% if booking.status == "accepted" %>
-        <%= link_to "Cancel the booking", reject_booking_path(booking), class: "btn btn-danger"  %>
-      <% end %>
-
-      <% if booking.status == "rejected" %>
-        <%= link_to "Accept the booking", accept_booking_path(booking), class: "btn btn-primary"  %>
-      <% end %>
-    </tr><br><br>
-  </table>
-
-<% end %>
-
-<h2>My places</h2>
-
-<%= render 'pages/card_grid' %>
-
+<h2>My Places</h2>
+<div class="wrapper myparties-content" >
+  <div class="container">
+    <% @myplaces.each do |place| %>
+      <div class="row place-row">
+        <div class="col-xs-12 col-sm-6 card-container">
+          <div class="card center-block" style=" max-width: 400px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= place.photos.any? ? (cl_image_path place.photos.first.path) : image_path('no-picture.jpg') %>')">
+            <%= image_tag 'avatar', class: 'avatar' %>
+            <div class="card-numbers">
+              <h3><%= place.price %> €</h3>
+              <h2><%= place.capacity %> <i class="fa fa-users" aria-hidden="true"></i></h2>
+            </div>
+            <div class="card-description">
+              <h2><%= place.name %></h2>
+              <p><%= place.address %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="container bookings-container">
+            <ul class="list-unstyled">
+              <% place.bookings.each do |booking| %>
+                <li>Booking <%= booking.status %> from <%= booking.start_date %> to <%= booking.end_date %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

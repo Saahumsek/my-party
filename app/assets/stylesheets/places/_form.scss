@@ -8,10 +8,17 @@
   box-sizing: border-box;
 }
 
+.wrapper-new {
+  padding: 90px;
+}
 
 .wrapper-show {
   height: 500px;
   background-size: cover !important;
+}
+
+.wrapper-index {
+  padding: 50px;
 }
 
 .wrapper-info {
@@ -21,4 +28,13 @@
 .place-info {
   min-height: 300px;
   padding: 20px;
+}
+
+.map {
+  position: fixed;
+}
+
+.index-search {
+  margin-left: 15px;
+  margin-bottom: 25px;
 }

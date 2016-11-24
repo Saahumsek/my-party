@@ -8,8 +8,10 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Become a Host"), new_place_path, class: "navbar-wagon-item navbar-wagon-button" %>
+    <%= link_to t(".top_call_to_action", default: "Become a Host"), new_place_path %>
     <!-- Different navigation if login or not -->
+
+
     <% if user_signed_in? %>
 
       <!-- Notification -->
@@ -17,7 +19,7 @@
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
-        <div class="dropdown"> 
+        <div class="dropdown">
         <% if current_user.facebook_picture_url? %>
         <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/30x30" %>
 <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
@@ -32,13 +34,6 @@
 
             </li>
             <li>
-              <%= link_to places_path do %>
-                <i class="fa fa-home" aria-hidden="true"></i>  <%= t(".my_places", default: "My Places") %>
-              <% end %>
-              
-            </li>
-
-            <li>
               <%= link_to dashboard_path do %>
                 <i class="fa fa-tachometer" aria-hidden="true"></i>  <%= t(".my_dashboard", default: "Dashboard") %>
               <% end %>
@@ -50,7 +45,7 @@
             </li>
 
           </ul>
-          
+
         </div>
       </div>
 

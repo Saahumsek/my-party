@@ -6,9 +6,9 @@ class BookingsController < ApplicationController
 
   def dashboard
     @user = current_user
-    @places = @user.places
+    @myplaces = @user.places
 
-    owner_places_ids = @places.map do |place|
+    owner_places_ids = @myplaces.map do |place|
       place.id
     end
 
@@ -19,7 +19,10 @@ class BookingsController < ApplicationController
       end
     end
 
-    @mybookings = User.joins(bookings: :place).where(users: {id: current_user.id}).select("users.email, bookings.status, bookings.start_date, bookings.end_date, places.name, places.address, places.capacity, places.price")
+    #@mybookings = User.joins(bookings: :place).where(users: {id: current_user.id}).select("users.email, bookings.status, bookings.start_date, bookings.end_date, places.name, places.address, places.capacity, places.price")
+    @mybookings = @user.bookings
+
+
   end
 
   def new

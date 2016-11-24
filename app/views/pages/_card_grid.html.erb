@@ -4,9 +4,14 @@
     <% @places.each do |place| %>
       <div class="col-xs-12 col-sm-4">
           <%= link_to place_path(place) do %>
+<<<<<<< HEAD
             <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= place.photos.any? ? (cl_image_path place.photos.first.path) : image_path('banner.jpg') %>')">
               <%= image_tag 'avatar', class: 'avatar' %>
 
+=======
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= place.photos.any? ? (cl_image_path place.photos.first.path) : image_path('no-picture.jpg') %>')">
+              <%= image_tag 'avatar', class: 'avatar' %>
+>>>>>>> 96d42b608c432817cff14d88c6993fbc9ae6d8e1
               <!-- <div class="card-category">Popular</div> -->
                <div class="card-numbers">
                 <h3><%= place.price %> €</h3>

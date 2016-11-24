@@ -8,10 +8,14 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     resources :places do
-      resources :bookings
+      resources :bookings, only: [:new, :create]
     end
 
     resources :users, only: [:edit, :show, :update]
+    resources :bookings, only: [:index, :show]
 
-    get "/bookings" => "bookings#my_bookings"
+    #get "/bookings" => "bookings#my_bookings"
+    get '/dashboard' => 'bookings#dashboard'
+    get '/bookings/:id/accept' => 'bookings#accepted', as: 'accept_booking'
+    get '/bookings/:id/reject' => 'bookings#rejected', as: 'reject_booking'
 end

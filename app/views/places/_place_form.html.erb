@@ -5,9 +5,6 @@
         <%= simple_form_for @place do |f| %>
           <%= f.input :name %>
           <%= f.input :address %>
-          <%#= f.input :zip_code %>
-          <%#= f.input :city %>
-          <%#= f.input :country, priority: [ 'FR' ] %>
           <%= f.input :capacity %>
           <%= f.input :price %>
           <%= f.input :photos, as: :attachinary %>
@@ -19,5 +16,5 @@
 </div>
 
 <%= content_for(:after_js) do %>
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=ENV['GOOGLE_API_BROWSER_KEY']></script>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=#{ENV['GOOGLE_API_BROWSER_KEY']}"></script>
 <% end %>

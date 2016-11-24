@@ -4,7 +4,7 @@
 
 <% if signed_in? %>
   <% if current_user.id == @place.user_id %>
-    <%= link_to "edit place", edit_place_path(@place), class: "btn btn-default" %>
+    <div><%= link_to "edit place", edit_place_path(@place), class: "btn btn-default" %></div>
   <% end %>
 <% end %>
 
@@ -14,13 +14,9 @@
           <div class="col-xs-12 col-sm-8">
             <h2><%= @place.name %></h2>
             <p><%= @place.address %></p>
-
-            <div class="place-info">
-            A propos de ce lieu
-              <%= @place.content %></br>
-              <i class="fa fa-users" aria-hidden="true"></i> <%= @place.capacity %> persons</br>
-              <i class="fa fa-eur" aria-hidden="true"></i><%= @place.price %> € par soirée
-            </div>
+            <i class="fa fa-home" aria-hidden="true"></i> A propos de ce lieu: <%= @place.content %></br>
+            <i class="fa fa-users" aria-hidden="true"></i> <%= @place.capacity %> persons</br>
+            <i class="fa fa-eur" aria-hidden="true"></i><%= @place.price %> € par soirée
 
 
 

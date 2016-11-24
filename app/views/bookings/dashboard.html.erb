@@ -1,47 +1,18 @@
 <div class="wrapper">
   <div class="container text-center">
     <div class="tabs">
-      <a class="tab active" href="#">
+      <a class="tab active" data-target="#myplaces" href="#">
         <h3>My places</h3>
       </a>
-      <a class="tab" href="#">
+      <a class="tab" data-target="#myparties" href="#">
         <h3>My parties</h3>
       </a>
     </div>
   </div>
 </div>
 
-<h2>My parties</h2>
-<div class="wrapper myparties-content" >
-  <div class="container">
-    <% @mybookings.each do |booking| %>
-      <div class="row booking-row">
-        <div class="col-xs-12 col-sm-6">
-          <div class="container bookings-container">
-            <h3>You booked <%= booking.place.name %> from <%= booking.start_date %> to <%= booking.end_date %></h3>
-            <h3>Booking <%= booking.status %></h3>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 card-container">
-          <div class="card center-block" style=" max-width: 400px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= booking.place.photos.any? ? (cl_image_path booking.place.photos.first.path) : image_path('no-picture.jpg') %>')">
-            <%= image_tag 'avatar', class: 'avatar' %>
-            <div class="card-numbers">
-              <h3><%= booking.place.price %> €</h3>
-              <h2><%= booking.place.capacity %> <i class="fa fa-users" aria-hidden="true"></i></h2>
-            </div>
-            <div class="card-description">
-              <h2><%= booking.place.name %></h2>
-              <p><%= booking.place.address %></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<h2>My Places</h2>
-<div class="wrapper myparties-content" >
+<!-- <h2>My Places</h2> -->
+<div class="wrapper tab-content" id="myplaces" >
   <div class="container">
     <% @myplaces.each do |place| %>
       <div class="row place-row">
@@ -65,6 +36,35 @@
                 <li>Booking <%= booking.status %> from <%= booking.start_date %> to <%= booking.end_date %></li>
               <% end %>
             </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- <h2>My parties</h2> -->
+<div class="wrapper tab-content" id="myparties" >
+  <div class="container">
+    <% @mybookings.each do |booking| %>
+      <div class="row booking-row">
+        <div class="col-xs-12 col-sm-6">
+          <div class="container bookings-container">
+            <h3>You booked <%= booking.place.name %> from <%= booking.start_date %> to <%= booking.end_date %></h3>
+            <h3>Booking <%= booking.status %></h3>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 card-container">
+          <div class="card center-block" style=" max-width: 400px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= booking.place.photos.any? ? (cl_image_path booking.place.photos.first.path) : image_path('no-picture.jpg') %>')">
+            <%= image_tag 'avatar', class: 'avatar' %>
+            <div class="card-numbers">
+              <h3><%= booking.place.price %> €</h3>
+              <h2><%= booking.place.capacity %> <i class="fa fa-users" aria-hidden="true"></i></h2>
+            </div>
+            <div class="card-description">
+              <h2><%= booking.place.name %></h2>
+              <p><%= booking.place.address %></p>
+            </div>
           </div>
         </div>
       </div>

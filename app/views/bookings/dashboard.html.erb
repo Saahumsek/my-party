@@ -38,7 +38,7 @@
             <ul class="list-unstyled">
               <% place.bookings.each do |booking| %>
                 <li>
-                From <%= link_to place.user.email, user_path(place.user) %>
+                  From <%= link_to booking.user.email, user_path(booking.user) %>
                   <ul class="list-unstyled list-inline bookings-list" >
                     <li>Booking <%= booking.status %> from <%= booking.start_date %> to <%= booking.end_date %></li>
                       <li><button type="button" class="btn btn-success"><%= link_to "accept", accept_booking_path(booking) %></button>  <button type="button" class="btn btn-danger"><%= link_to "decline", reject_booking_path(booking) %></button></li>

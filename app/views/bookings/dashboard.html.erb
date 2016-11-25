@@ -10,7 +10,7 @@
     </div>
   </div>
 </div>
-<!-- <h2>My Places</h2> -->
+
 <div class="wrapper tab-content" id="myplaces" >
   <div class="container">
     <% @myplaces.each do |place| %>
@@ -34,7 +34,6 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-7">
-          <!-- <div class="container bookings-container"> -->
             <ul class="list-unstyled">
               <% place.bookings.each do |booking| %>
                 <li>
@@ -47,14 +46,12 @@
                 </li>
               <% end %>
             </ul>
-          <!-- </div> -->
         </div>
       </div>
     <% end %>
   </div>
 </div>
 
-<!-- <h2>My parties</h2> -->
 <div class="wrapper tab-content hidden" id="myparties" >
   <div class="container">
     <% @mybookings.each do |booking| %>

@@ -33,7 +33,7 @@
           <div class="container bookings-container">
             <ul class="list-unstyled">
               <% place.bookings.each do |booking| %>
-                <li>Booking <%= booking.status %> from <%= booking.start_date %> to <%= booking.end_date %></li>
+                <li>Booking <%= booking.status %> from <%= booking.start_date %> to <%= booking.end_date %> <%= render 'shared/switch' %></li>
               <% end %>
             </ul>
           </div>

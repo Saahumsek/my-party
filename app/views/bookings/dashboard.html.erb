@@ -17,7 +17,12 @@
       <div class="row place-row">
         <div class="col-xs-12 col-sm-() card-container">
           <div class="card center-block" style=" max-width: 400px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= place.photos.any? ? (cl_image_path place.photos.first.path) : image_path('no-picture.jpg') %>')">
-            <%= image_tag 'avatar', class: 'avatar' %>
+            <% if place.user.facebook_picture_url? %>
+              <% avatar_url = place.user.facebook_picture_url || "http://placehold.it/30x30" %>
+              <%= image_tag avatar_url, class: 'avatar top-left' %>
+            <% else %>
+              <%= image_tag "http://www.wowkeren.com/images/photo/zinedine_zidane.jpg", class: "avatar top-left" %>
+            <% end %>
             <div class="card-numbers">
               <h2><%= place.price %> €</h3>
               <h2><%= place.capacity %> <i class="fa fa-users" aria-hidden="true"></i></h2>
@@ -38,6 +43,7 @@
                     <li><button type="button" class="btn btn-success"><%= link_to "accept", accept_booking_path(booking) %></button></li>
                     <li><button type="button" class="btn btn-danger"><%= link_to "decline", reject_booking_path(booking) %></button></li>
                   </ul>
+                  <p><%= booking.comment %></p>
                 </li>
               <% end %>
             </ul>
@@ -61,7 +67,12 @@
         </div>
         <div class="col-xs-12 col-sm-6 card-container">
           <div class="card center-block" style=" max-width: 400px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= booking.place.photos.any? ? (cl_image_path booking.place.photos.first.path) : image_path('no-picture.jpg') %>')">
-            <%= image_tag 'avatar', class: 'avatar' %>
+            <% if booking.place.user.facebook_picture_url? %>
+              <% avatar_url = booking.place.user.facebook_picture_url || "http://placehold.it/30x30" %>
+              <%= image_tag avatar_url, class: 'avatar top-left' %>
+            <% else %>
+              <%= image_tag "http://www.wowkeren.com/images/photo/zinedine_zidane.jpg", class: "avatar top-left" %>
+            <% end %>
             <div class="card-numbers">
               <h3><%= booking.place.price %> €</h3>
               <h2><%= booking.place.capacity %> <i class="fa fa-users" aria-hidden="true"></i></h2>

@@ -17,6 +17,7 @@ class PlacesController < ApplicationController
     else
       @places = Place.all
     end
+    @count = @places.size
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
       marker.lng place.longitude

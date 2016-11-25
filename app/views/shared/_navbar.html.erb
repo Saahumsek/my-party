@@ -70,9 +70,6 @@
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
       <% if user_signed_in? %>
         <li>
-          <%= link_to t(".profile", default: "Profile"), user_path(id: current_user.id) %>
-        </li>
-        <li>
           <%= link_to t(".my_places", default: "My Places"), places_path %>
         </li>
         <li>

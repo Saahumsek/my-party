@@ -5,9 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :places
-  has_many :bookings
-  has_many :places
+  has_many :places, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice(:provider, :uid)
@@ -28,11 +27,5 @@ class User < ApplicationRecord
 
     return user
   end
-
-  #validates :name
-
-  #validates :age, numericality: { only_integer: true }
-
-  #validates :gender, inclusion: { in: %w(male female), message: "%{value} is not a valid gender" }
 
 end

@@ -15,7 +15,7 @@
   <div class="container">
     <% @myplaces.each do |place| %>
       <div class="row place-row">
-        <div class="col-xs-12 col-sm-() card-container">
+        <div class="col-xs-12 col-sm-5 card-container">
           <div class="card center-block" style=" max-width: 400px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= place.photos.any? ? (cl_image_path place.photos.first.path) : image_path('no-picture.jpg') %>')">
             <% if place.user.facebook_picture_url? %>
               <% avatar_url = place.user.facebook_picture_url || "http://placehold.it/30x30" %>
@@ -34,21 +34,20 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-7">
-          <div class="container bookings-container">
+          <!-- <div class="container bookings-container"> -->
             <ul class="list-unstyled">
               <% place.bookings.each do |booking| %>
                 <li>
                 From <%= link_to place.user.email, user_path(place.user) %>
                   <ul class="list-unstyled list-inline bookings-list" >
                     <li>Booking <%= booking.status %> from <%= booking.start_date %> to <%= booking.end_date %></li>
-                    <li><button type="button" class="btn btn-success"><%= link_to "accept", accept_booking_path(booking) %></button></li>
-                    <li><button type="button" class="btn btn-danger"><%= link_to "decline", reject_booking_path(booking) %></button></li>
+                      <li><button type="button" class="btn btn-success"><%= link_to "accept", accept_booking_path(booking) %></button>  <button type="button" class="btn btn-danger"><%= link_to "decline", reject_booking_path(booking) %></button></li>
                   </ul>
                   <p><%= booking.comment %></p>
                 </li>
               <% end %>
             </ul>
-          </div>
+          <!-- </div> -->
         </div>
       </div>
     <% end %>

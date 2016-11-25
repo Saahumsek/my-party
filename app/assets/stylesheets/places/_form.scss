@@ -42,3 +42,13 @@
 .margin-right {
   margin-right: 25px !important;;
 }
+
+.place-info {
+  position: relative;
+}
+
+#edit-button {
+  position: absolute;
+  right: 10px;
+  top: 50px;
+}

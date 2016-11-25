@@ -12,7 +12,7 @@
                 <%= link_to place_path(place) do %>
                   <div class="card-place">
                     <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= place.photos.any? ? (cl_image_path place.photos.first.path) : image_path('no-picture.jpg') %>')">
-                    <%= image_tag 'avatar', class: 'avatar' %>
+                    <%= image_tag 'avatar', class: 'avatar top-left' %>
                     <!-- <div class="card-category">Popular</div> -->
                      <div class="card-numbers">
                       <h3><%= place.price %> €</h3>

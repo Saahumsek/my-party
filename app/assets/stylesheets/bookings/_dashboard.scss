@@ -34,5 +34,29 @@
 .bookings-container {
   padding: 20px;
   vertical-align: middle;
+}
 
+.bookings-list {
+  display: flex;
+  align-items:center;
+
+}
+.bookings-list ul {
+  text-align: middle;
+  display: flex;
+  align-items: center;
+
+}
+
+.bookings-list li {
+  align-items: center;
+  text-align: middle;
+}
+.bookings-list a {
+  color: white;
+  font-weight: bold;
+}
+
+.bookings-list button {
+  width: 80px;
 }

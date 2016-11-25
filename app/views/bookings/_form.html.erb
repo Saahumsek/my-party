@@ -14,8 +14,6 @@
           <%= f.input :start_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
           <%= f.input :end_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
           <%= f.input :comment, label: "Comments" %>
-          <%#= hidden_field_tag 'place_id', @place.id %>
-          <%#= hidden_field_tag 'user_id', @user.id %>
 
           <%= f.button :submit %>
 

@@ -1,52 +1,36 @@
 
   <div class="wrapper-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @place.photos.any? ? (cl_image_path @place.photos.first.path) : image_path('no-picture.jpg') %>')">
   </div>
-
-<% if signed_in? %>
-  <% if current_user.id == @place.user_id %>
-    <div><%= link_to "edit place", edit_place_path(@place), class: "btn btn-default" %></div>
-  <% end %>
-<% end %>
-
     <div class="wrapper-info">
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-8">
-            <h2><%= @place.name %></h2>
-            <p><%= @place.address %></p>
-            <i class="fa fa-home" aria-hidden="true"></i> A propos de ce lieu: <%= @place.content %></br>
-            <i class="fa fa-users" aria-hidden="true"></i> <%= @place.capacity %> persons</br>
-            <i class="fa fa-eur" aria-hidden="true"></i><%= @place.price %> € par soirée
+            <div class="place-info">
 
+              <h2><%= @place.name %></h2>
+
+              <% if signed_in? %>
+                <% if current_user.id == @place.user_id %>
+                  <%= link_to "edit place", edit_place_path(@place), class: "btn btn-default", id: "edit-button" %>
+                <% end %>
+              <% end %>
+
+              <p><%= @place.address %></p>
+              <i class="fa fa-home" aria-hidden="true"></i> A propos de ce lieu: <%= @place.content %></br>
+              <i class="fa fa-users" aria-hidden="true"></i> <%= @place.capacity %> persons</br>
+              <i class="fa fa-eur" aria-hidden="true"></i><%= @place.price %> € par soirée
+
+            </div>
 
 
           </div>
 
           <% if signed_in? %>
             <% unless current_user.id == @place.user_id %>
-              <div class="col-xs-12 col-sm-4">
-                <div class="contact-bar">
-                  <div class="contact-container">
-                    <div class="contact-header space-3">
-                      <p>Book Now</p>
-                    </div>
-                    <div class="contact-body">
-                      <%= simple_form_for [@place, @booking] do |f| %>
-
-                        <%= f.input :start_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
-                        <%= f.input :end_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
-                        <%= hidden_field_tag 'place_id', @place.id %>
-                        <%= hidden_field_tag 'user_id', current_user.id %>
-
-                        <%= f.button :submit %>
-
-                      <% end %>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <%= render 'bookings/form' %>
             <% end %>
+          <% else %>
+            <%= render 'bookings/form' %>
           <% end %>
 
 

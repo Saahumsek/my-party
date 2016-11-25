@@ -1,7 +1,14 @@
 .avatar {
-  width: 30px;
+  width: 0px;
   border-radius: 50%;
 }
+
+.top-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 .avatar-large {
   width: 50px;
   border-radius: 50%;

@@ -1,9 +1,14 @@
+.wrapper {
+  background: $gray;
+}
+
+
 .wrapper .tab-content {
-  background: $gray-light;
+  background: white;
 }
 
 .tab-content {
-  background: $gray-light;
+  background: white;
   padding: 20px;
 }
 
@@ -39,19 +44,21 @@
 .bookings-list {
   display: flex;
   align-items:center;
-
 }
-.bookings-list ul {
+
+.bookings-list {
   text-align: middle;
   display: flex;
   align-items: center;
-
+  justify-content: space-between;
 }
 
 .bookings-list li {
   align-items: center;
   text-align: middle;
+  justify-content: space-between;
 }
+
 .bookings-list a {
   color: white;
   font-weight: bold;

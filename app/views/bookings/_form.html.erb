@@ -1,0 +1,26 @@
+
+
+<div class="col-xs-12 col-sm-4">
+  <div class="contact-bar">
+    <div class="contact-container">
+      <div class="contact-header space-3">
+        <p>Book Now</p>
+      </div>
+      <div class="contact-body">
+
+
+        <%= simple_form_for [@place, @booking] do |f| %>
+
+          <%= f.input :start_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
+          <%= f.input :end_date, as: :string, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') } %>
+          <%= f.input :comment, label: "Comments" %>
+          <%#= hidden_field_tag 'place_id', @place.id %>
+          <%#= hidden_field_tag 'user_id', @user.id %>
+
+          <%= f.button :submit %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -32,7 +32,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.status = "pending"
-    @booking.user_id = params[:user_id]
+    @booking.user_id = current_user.id
     @booking.place_id = params[:place_id]
     @booking.save
     flash[:notice] = "Booking request sent to place owner"

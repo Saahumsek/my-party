@@ -43,23 +43,37 @@
 .navbar-wagon-link {
   color: $gray;
   font-size: $base-size;
+  cursor: pointer;
 }
+
+.navbar-wagon-link-red {
+  color: #d35400;
+  font-size: $base-size;
+  cursor: pointer;
+}
+
+.navbar-wagon-link-red:hover {
+  color: #d35400;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
 .navbar-wagon-link:hover {
   color: $gray;
   text-decoration: none;
-  border-bottom: 2px solid $gray;
+  opacity: 0.8;
 }
 
 /* Navbar right button */
 .navbar-wagon-button {
-  color: $orange;
+  color: $gray;
   font-size: $base-size;
 }
 
 .navbar-wagon-button:hover {
-  color: $orange;
+  color: $gray;
   text-decoration: none;
-  border-bottom: 2px solid $orange;
+  border-bottom: 2px solid $gray;
 }
 
 /* Navbar dropdown menu */

@@ -1,16 +1,18 @@
-<div class="wrapper-new">
-  <div class="container">
+<div class="wrapper">
+  <div class="container text-center features">
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <%= simple_form_for @place do |f| %>
-          <%= f.input :name %>
-          <%= f.input :address %>
-          <%= f.input :capacity %>
-          <%= f.input :price %>
-          <%= f.input :content %>
-          <%= f.input :photos, as: :attachinary %>
-          <%= f.button :submit %>
-        <% end %>
+        <div class="form-new">
+          <%= simple_form_for @place do |f| %>
+            <%= f.input :name %>
+            <%= f.input :address %>
+            <%= f.input :capacity %>
+            <%= f.input :price %>
+            <%= f.input :content %>
+            <%= f.input :photos, as: :attachinary %>
+            <%= f.button :submit %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

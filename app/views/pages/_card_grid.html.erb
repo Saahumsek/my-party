@@ -3,22 +3,9 @@
     <div class="row">
     <% @places.each do |place| %>
       <div class="col-xs-12 col-sm-4">
-          <%= link_to place_path(place) do %>
-            <div class="card-place">
-              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= place.photos.any? ? (cl_image_path place.photos.first.path) : image_path('no-picture.jpg') %>')">
-                <%= image_tag 'avatar', class: 'avatar' %>
-                <!-- <div class="card-category">Popular</div> -->
-                 <div class="card-numbers">
-                  <h3><%= place.price %> €</h3>
-                  <h2><%= place.capacity %> <i class="fa fa-users" aria-hidden="true"></i></h2>
-                 </div>
-                <div class="card-description">
-                    <h2><%= place.name %></h2>
-                    <p><%= place.address %></p>
-              </div>
-            </div>
-          <% end %>
-        </div>
+        <%= link_to place_path(place) do %>
+          <%= render 'shared/card', place: place %>
+        <% end %>
       </div>
     <% end %>
   </div>

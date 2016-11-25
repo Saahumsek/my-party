@@ -8,7 +8,9 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Become a Host"), new_place_path %>
+    <a href="#" class="btn-medium">
+      <%= link_to t(".top_call_to_action", default: "Become a Host"), new_place_path, class: "navbar-wagon-item navbar-wagon-link-red" %>
+    </a>
     <!-- Different navigation if login or not -->
 
 
@@ -68,24 +70,19 @@
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
       <% if user_signed_in? %>
         <li>
-          <%= link_to user_path(id: current_user.id) do %>
-            <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-          <% end %>
+          <%= link_to t(".profile", default: "Profile"), user_path(id: current_user.id) %>
         </li>
         <li>
-          <%= link_to places_path do %>
-            <i class="fa fa-home" aria-hidden="true"></i>  <%= t(".my_places", default: "My Places") %>
-          <% end %>
+          <%= link_to t(".my_places", default: "My Places"), places_path %>
         </li>
         <li>
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Sign out") %>
-          <% end %>
+          <%= link_to t(".sign_out", default: "Sign out"), destroy_user_session_path, method: :delete %>
         </li>
       <% else %>
-        <li><%= link_to "Log In", new_user_session_path %></li>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <li><%= link_to "Become a Host", new_place_path %></li>
+          <li><%= link_to "Log In", new_user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li><%= link_to "Become a Host", new_place_path %></li>
+        </a>
       <% end %>
       </ul>
     </div>

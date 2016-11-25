@@ -22,3 +22,19 @@
 .bg-dark-blue {
   background: #3b5998;
 }
+
+.core-height {
+  min-height: 74vh;
+}
+
+.fb-button {
+  position: absolute;
+  bottom: 40px;
+  right: 15px;
+}
+
+.button-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -8,9 +8,13 @@
             <div class="place-info">
               <h2><%= @place.name %></h2>
               <p><%= @place.address %></p>
-              <i class="fa fa-home" aria-hidden="true"></i> A propos de ce lieu: <%= @place.content %></br>
-              <i class="fa fa-users" aria-hidden="true"></i> <%= @place.capacity %> persons</br>
-              <i class="fa fa-eur" aria-hidden="true"></i> <%= @place.price %> € par soirée
+              <h4><i class="fa fa-home" aria-hidden="true"></i> <strong>About:</strong> <%= @place.content %></br></h4>
+
+              <div class="pricedescription">
+                <h4><i class="fa fa-users" aria-hidden="true"></i> <strong>Capacity:</strong> <%= @place.capacity %> </h4>
+                <h4 class="price"><i class="fa" aria-hidden="true"></i> <strong> <%= @place.price %></strong> € par soirée</h4>
+              </div>
+
             </div>
           </div>
           <div class="col-xs-12 col-sm-4">
